@@ -33,3 +33,4 @@ for i in range(len(mat1)):
 
 
 
+# time complexity = 2n^2+2n+1
