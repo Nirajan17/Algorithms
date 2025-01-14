@@ -23,6 +23,10 @@ class linked_list:
         
         itr.next = Node(data, None)
 
+    def insert_values(self, data):
+        for item in data:
+            self.insert_at_end(item)
+
     def print(self):
         if self.head == None:
             print("Linked list is empty")
@@ -36,13 +40,34 @@ class linked_list:
         
         print(ll1)
 
+    def get_length(self):
+        itr = self.head
+        count = 1
+        while itr.next:
+            itr = itr.next
+            count +=1
+        return count
+
+    def remove_at(self, index):
+        itr = self.head
+        if index == 0:
+            self.head = self.head.next
+
+        if index<0 or index > self.get_length():
+            raise Exception("! Invalid Index !")
+        
+        count = 0
+        while itr:
+            if count == index-1:
+                itr.next = itr.next.next
+            itr = itr.next
+            count += 1
+
 if __name__=='__main__':
     l1 = linked_list()
-    l1.insert_at_begin(10)
-    l1.insert_at_begin("lecturer")
-    l1.insert_at_end(3)
-    l1.insert_at_begin(2)
-    l1.insert_at_end("Nirajan")
+    l1.insert_values([1,2,3,4])
+    print(l1.get_length())
+    l1.remove_at(2)
     l1.print()
    
 
