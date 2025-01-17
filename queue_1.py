@@ -3,15 +3,38 @@
 
 from collections import deque
 
-queue = deque()
+class Queue:
+    def __init__(self):
+        self.buffer = deque()
 
-queue.append(12)
-queue.append("nirajan")
-queue.append(56)
-queue.append(120)
+    def enqueue(self,val):
+        self.buffer.appendleft(val)
 
-print(queue)
+    def deqeue(self):
+        if len(self.buffer) == 0:
+            return "empty queue"
+        return self.buffer.pop()
+    
+    def is_empty(self):
+        return len(self.buffer) == 0
+    
+    def size(self):
+        return len(self.buffer)
+    
 
-print(queue.popleft())
-print(queue.popleft())
-print(queue)
+q1 = Queue()
+q1.enqueue({
+    'company': 'Wallmart',
+    'timestamp': '15 apr, 11.01 AM',
+    'price': 131.10
+})
+
+q1.enqueue({
+    'company': 'Wallmart',
+    'timestamp': '15 apr, 11.02 AM',
+    'price': 132
+})
+
+print(q1.size())
+
+print(q1.deqeue()['company'])
