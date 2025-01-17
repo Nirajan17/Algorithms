@@ -1,0 +1,73 @@
+# placing orders every 0.5 sec
+# serving food every 2 sec
+
+from collections import deque
+import time
+import threading
+
+class Queue:
+    def __init__(self):
+        self.buffer = deque()
+
+    def enqueue(self,val):
+        self.buffer.appendleft(val)
+
+    def deqeue(self):
+        if len(self.buffer) == 0:
+            return "empty queue"
+        return self.buffer.pop()
+    
+    def is_empty(self):
+        return len(self.buffer) == 0
+    
+    def size(self):
+        return len(self.buffer)
+    
+
+
+import threading
+import queue
+import time
+
+import threading
+import queue
+import time
+
+# Thread-safe queue
+food_queue = Queue()
+
+# Event to stop threads gracefully
+stop_event = threading.Event()
+console_lock = threading.Lock()
+
+def order_food():
+    while not stop_event.is_set():  # Run until stop_event is set
+        with console_lock:
+            value = input("What would you like to order? (type 'exit' to stop): ")
+        if value.lower() == "exit":  # Allow user to exit
+            stop_event.set()  # Signal all threads to stop
+            break
+        food_queue.enqueue(value)  # Enqueue the food item
+        time.sleep(0.5)
+
+def serve_food():
+    while not stop_event.is_set():  # Run until stop_event is set
+        if not food_queue.is_empty():
+            served_item = food_queue.deqeue()  # Dequeue the food item
+            with console_lock:
+                print(f"Serving: {served_item}")
+        time.sleep(10)
+
+# Create thread objects
+thread1 = threading.Thread(target=order_food, name="order_thread")
+thread2 = threading.Thread(target=serve_food, name="serve_thread")
+
+# Start threads
+thread1.start()
+thread2.start()
+
+# Wait for threads to complete
+thread1.join()
+thread2.join()
+
+print("Program terminated gracefully.")

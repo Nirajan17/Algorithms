@@ -35,6 +35,7 @@ q1.enqueue({
     'price': 132
 })
 
-print(q1.size())
+print(q1.buffer.popleft())
 
-print(q1.deqeue()['company'])
+print(q1.deqeue())
+print(q1.deqeue())
