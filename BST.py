@@ -65,6 +65,22 @@ class BinarySearchTree():
         elements.append(self.node_value)
         return elements
 
+    def search(self, val):
+        if self.node_value == val:
+            return True
+        
+        if val < self.node_value:
+            if self.left_node:
+                return self.left_node.search(val)
+            else:
+                return False
+            
+        if val > self.node_value:
+            if self.right_node:
+                return self.right_node.search(val)
+            else:
+                return False
+
 def build_tree(values):
     root_node = BinarySearchTree(values[0])
 
@@ -78,7 +94,9 @@ if __name__=="__main__":
 
     root_node = build_tree(numbers)
 
-    print(f"\nInorder Traversal \n{root_node.inorder_traverse()}\n")
-    print(f"Preorder Traversal \n{root_node.preorder_traverse()}\n")
-    print(f"Postorder Traversal \n{root_node.postorder_traverse()}\n")
+    # print(f"\nInorder Traversal \n{root_node.inorder_traverse()}\n")
+    # print(f"Preorder Traversal \n{root_node.preorder_traverse()}\n")
+    # print(f"Postorder Traversal \n{root_node.postorder_traverse()}\n")
 
+    rvalue = root_node.search(345)
+    print(rvalue)
