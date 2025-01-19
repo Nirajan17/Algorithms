@@ -81,6 +81,19 @@ class BinarySearchTree():
             else:
                 return False
 
+    def find_min(self):
+        if self.left_node == None:
+            return self.node_value
+        else:
+            return self.left_node.find_min()
+        
+    def find_max(self):
+        if self.right_node == None:
+            return self.node_value
+        else:
+            return self.right_node.find_max()
+
+
 def build_tree(values):
     root_node = BinarySearchTree(values[0])
 
@@ -90,13 +103,13 @@ def build_tree(values):
     return root_node
 
 if __name__=="__main__":
-    numbers = [1,34,76,2,34,90,34,2,4,8,9,450]
+    numbers = [10,34,76,20,34,90,34,200,2,49,85,933,450]
 
     root_node = build_tree(numbers)
 
-    # print(f"\nInorder Traversal \n{root_node.inorder_traverse()}\n")
-    # print(f"Preorder Traversal \n{root_node.preorder_traverse()}\n")
-    # print(f"Postorder Traversal \n{root_node.postorder_traverse()}\n")
+    print(f"\nInorder Traversal \n{root_node.inorder_traverse()}\n")
+    print(f"Preorder Traversal \n{root_node.preorder_traverse()}\n")
+    print(f"Postorder Traversal \n{root_node.postorder_traverse()}\n")
 
-    rvalue = root_node.search(345)
-    print(rvalue)
+    print(f"minimum value is {root_node.find_min()}")
+    print(f"maximum value is {root_node.find_max()}")
