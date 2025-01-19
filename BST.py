@@ -8,7 +8,7 @@ class BinarySearchTree():
 
     def add_child(self,data):
         if self.node_value == data:
-            print("Value already exits!")
+            # print(f"{data} already exits!")
             return
         
         if self.node_value > data:
@@ -28,32 +28,57 @@ class BinarySearchTree():
         elements = []
         # visiting the left subtree
         if self.left_node:
-            elements += self.left_node.inorder_traverse()
+            elements += (self.left_node.inorder_traverse()) # use += to concatenate two lists, if used .apppend(), every a list will be appended which is not intended!
 
         # visiting the root node
-        elements.append(self.node_value)
+        elements.append(self.node_value)  
 
         # visiting the right subtree
         if self.right_node:
-            elements += self.right_node.inorder_traverse()
+            elements += (self.right_node.inorder_traverse())
 
         return elements
 
     def preorder_traverse(self):
-        pass
+        elements = []
+
+        # visiting the root node
+        elements.append(self.node_value)
+
+        if self.left_node:
+            elements += self.left_node.preorder_traverse()
+
+        if self.right_node:
+            elements += self.right_node.preorder_traverse()
+
+        return elements
 
     def postorder_traverse(self):
-        pass
+        elements = []
 
+        if self.left_node:
+            elements += self.left_node.postorder_traverse()
+
+        if self.right_node:
+            elements += self.right_node.postorder_traverse()
+
+        elements.append(self.node_value)
+        return elements
+
+def build_tree(values):
+    root_node = BinarySearchTree(values[0])
+
+    for i in range(1,len(values)):
+        root_node.add_child(values[i])
+
+    return root_node
 
 if __name__=="__main__":
-    root_node = BinarySearchTree(10)
-    root_node.add_child(18)
-    root_node.add_child(34)
-    root_node.add_child(23)
-    root_node.add_child(67)
-    root_node.add_child(5)
-    root_node.add_child(90)
+    numbers = [1,34,76,2,34,90,34,2,4,8,9,450]
 
-    print(root_node.inorder_traverse())
+    root_node = build_tree(numbers)
+
+    print(f"\nInorder Traversal \n{root_node.inorder_traverse()}\n")
+    print(f"Preorder Traversal \n{root_node.preorder_traverse()}\n")
+    print(f"Postorder Traversal \n{root_node.postorder_traverse()}\n")
 
