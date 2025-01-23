@@ -1,4 +1,6 @@
+from time_wrapper import time_it
 
+@time_it
 def binary_search(values, value):
     left_index = 0
     right_index = len(values) - 1
@@ -14,6 +16,7 @@ def binary_search(values, value):
 
     return -1
 
+@time_it
 def bs_recursion(values, value, left_index, right_index):
     if right_index < left_index:
         return -1
@@ -31,7 +34,7 @@ def bs_recursion(values, value, left_index, right_index):
 
     return bs_recursion(values, value, left_index, right_index)
 
-
+@time_it
 def linear_search(values, value):
     for i,v in enumerate(values):
         if v == value:
@@ -40,12 +43,10 @@ def linear_search(values, value):
         
 
 if __name__=="__main__":
-    values = [12,19,24,36,100,129]
+    values = [i for i in range(10000)]
     # print(linear_search(values, 36))
     print(binary_search(values, 12))
-    print(binary_search(values, 129))
-    print(binary_search(values, 100))
     print("\n")
     print(bs_recursion(values, 12, 0, len(values)))
-    print(bs_recursion(values, 129, 0, len(values)))
-    print(bs_recursion(values, 100, 0, len(values)))
+    print("\n")
+    print(linear_search(values, 1000))
