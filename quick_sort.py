@@ -9,8 +9,8 @@ def partition(elements, start, end):
     pivot_index = start
     pivot_element = elements[pivot_index]
 
-    while start <= end:
-        while(elements[start] < pivot_element):
+    while start < end:
+        while(start < len(elements) and elements[start] <= pivot_element):
             start += 1
 
         while(elements[end] > pivot_element):
@@ -18,27 +18,28 @@ def partition(elements, start, end):
 
         if start < end:
             swap(elements, start, end)
-        swap(elements, end, pivot_index)
-    print(elements)
+    swap(elements, end, pivot_index)
     return end
 
 def quick_sort(elements, start, end):
-    new_pi = partition(elements)
-
-    while(start<end):
-        # for left part
-        l_start = 0
-        l_end = new_pi - 1
-        quick_sort(elements, new_pi, l_start, l_end)
-
-        # for right part
-        r_start = new_pi + 1
-        r_end = len(elements) - 1
-        quick_sort(elements, new_pi, r_start, r_end)
+    if start < end:
+        pi = partition(elements, start, end)
+        quick_sort(elements, start, pi-1)
+        quick_sort(elements, pi+1, end)
+    return elements
 
 
 if __name__=="__main__":
-    elements = [11,9,29,7,2,15,28]
-    partition(elements, 0, len(elements)-1)
-    # quick_sort(elements)
-    # print(elements)
+    elements = [
+        [11,9,29,7,2,15,28],
+        [34,56,78,90,23,12,45,67],
+        [23,67,12,90,23,56,78,122,7,349,457,5],
+        [5,7,9,10,2,4,6,8],
+        [1,2,3,4,5,6,7,8,9],
+        [12],
+        [],
+    ]
+    
+    for element in elements:
+        print(quick_sort(element, 0, len(element)-1))
+
