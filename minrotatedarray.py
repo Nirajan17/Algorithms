@@ -2,3 +2,5 @@
 
 # time complexity should be O(logn)
 
+class Solution:
+    
