@@ -21,10 +21,22 @@
 
 # below is the optimal solution
 
-
+# initialize left and right pointer to leftmost and rightmost value
+# check if the area is greater than the previous value 
+# increase or decrease left or right pointer by checking which one is smaller
 
 
 
 class Solution:
     def most_water(slef, nums):
-        pass
+        result = 0
+        left, right = 0, len(nums)-1
+
+        while left < right:
+            result = max(result, (right-left) * min(nums[left], nums[right]))
+            if nums[left] > nums[right]:
+                right -= 1
+            else:
+                left += 1
+
+        return result
