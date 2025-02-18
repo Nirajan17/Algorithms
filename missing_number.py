@@ -17,3 +17,14 @@ class Solution:
 # it's time complexity is O(n^2)
 
 # let's try optimal solution
+# one approach might be going through sum, let's see
+
+class Solution:
+    def missingNumber(self, nums):
+        n = len(nums)
+        sum_nums = (n*(n+1))/2
+        
+        total = 0
+        for num in nums:
+            total += num
+        return sum_nums-total
