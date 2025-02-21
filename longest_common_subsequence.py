@@ -15,5 +15,5 @@ class Solution:
 
 if __name__=="__main__":
     sol = Solution()
-    r_value = sol.longcomSubsequence("he", "hel")
+    r_value = sol.longcomSubsequence("abcd", "ac")
     print(f"Longest subsequence is {r_value}")
