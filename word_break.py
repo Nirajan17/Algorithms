@@ -4,15 +4,19 @@
 
 class Solution:
     def wordBreak(self, s, word_dict):
+        dp = [False] * (len(s)+1)
+        dp[len(s)] = True
 
-        if not s:
-            return True  
-        
-        for i in range(1, len(s) + 1): 
-            first = s[:i]
-            
-            if first in word_dict:
-                if self.wordBreak(s[i:], word_dict):  # Check the remaining part
-                    return True
-        
-        return False
+        for i in range(len(s)-1, -1, -1):
+            for w in word_dict:
+                if (i+len(w) <= len(s)) and s[i:i+len(w)] == w:
+                    dp[i] = dp[i+len(w)]
+                if dp[i]:
+                    break
+        return dp[0]
+    
+if __name__=="__main__":
+    s = "helo"
+    word_dict = ["hell", "hel", "o", "he", "h"]
+    wb = Solution()
+    print(wb.wordBreak(s,word_dict))
