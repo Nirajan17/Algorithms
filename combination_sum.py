@@ -5,24 +5,22 @@
 class Solution:
     def combinationSum(self,candidates, target):
         result = []
-        cur = []
 
-        def recurSum(i):
-            cur.append(candidates[i])
-            total = sum(cur)
+        def recurSum(i, cur, total):
 
             if total == target:
-                result.append(cur)
+                result.append(cur.copy())
                 return
             
             if i >= len(candidates) or total > target:
                 return
             
-            recurSum(i)
-            cur.clear()
-            recurSum(i+1)
+            cur.append(candidates[i])
+            recurSum(i, cur, total+candidates[i])
+            cur.pop()
+            recurSum(i+1, cur, total)
 
-        recurSum(0)
+        recurSum(0,[],0)
         return result
     
 
