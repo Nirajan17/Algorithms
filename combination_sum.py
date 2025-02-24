@@ -9,6 +9,7 @@ class Solution:
         def recurSum(i, cur, total):
 
             if total == target:
+                # we need to specifically append the copy of the list here because if we append cur directly, reference to cur will be appended which means if cur is changed later in recursive calls the appended cur value will also get changed, ie mutated.
                 result.append(cur.copy())
                 return
             
