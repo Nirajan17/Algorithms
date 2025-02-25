@@ -3,17 +3,21 @@
 
 class Solution:
     def houseRobber(self, nums):
-        result = []
-
-        for i in range(len(nums)):
-            if i >= len(nums):
-                i=0
-            total = nums[i] + nums[i+2]
-            result.append(total)
-        return max(result)
+        
+        def helper(houses):
+            dp = [1] * len(houses)
+            dp[0] = houses[0]
+            dp[1] = max(houses[:2])
+            
+            for i in range(2,len(houses)):
+                dp[i] = max(houses[i]+dp[i-2], max(dp[i-1], houses[i]))
+            
+            return dp[len(houses)-1]
+        
+        return max(helper(nums[:len(nums)-1]), helper(nums[1:]))
     
 if __name__=="__main__":
-    nums = [1,2,3,1]
+    nums = [2,3,1]
     s = Solution()
     result = s.houseRobber(nums)
     print(result)
