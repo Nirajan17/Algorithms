@@ -5,6 +5,10 @@ class Solution:
     def houseRobber(self, nums):
         
         def helper(houses):
+            if not nums:
+                return 0
+            if len(nums) == 1:
+                return nums[0]
             dp = [1] * len(houses)
             dp[0] = houses[0]
             dp[1] = max(houses[:2])
