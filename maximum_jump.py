@@ -3,6 +3,8 @@
 class Solution:
     def canJump(self,nums):
         n = len(nums)
+        if nums[0]>nums[n-1]:
+            return True
         dp = [False] * n
         dp[n-1] = True
 
@@ -17,5 +19,5 @@ class Solution:
 
 if __name__=="__main__":
     s = Solution()
-    nums = [2,3,1,0,4]
+    nums = [0,3,1,0,4]
     print(s.canJump(nums))
