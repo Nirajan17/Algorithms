@@ -17,3 +17,19 @@ for u, v in edge_list:
 print(adj_matrix)
 
 # changing into adjanceny list
+
+adj_list = {}
+
+for u,v in edge_list:
+    adj_list[u] = [u,v]
+
+print(adj_list)
+
+from collections import defaultdict
+
+d = defaultdict(list)
+
+for u, v in edge_list:
+    d[u].append(v)
+
+print(d)
