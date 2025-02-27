@@ -14,14 +14,14 @@ for u, v in edge_list:
     # print(u, v)
     adj_matrix[u-1][v-1] = 1
 
-print(adj_matrix)
+# print(adj_matrix)
 
 # changing into adjanceny list
 
 adj_list = {}
 
 for u,v in edge_list:
-    adj_list[u] = [u,v]
+    adj_list[u] = [u,v] # this approach is wrong here because the list will be overwritten but instead we should append the value of v every time to that list, this is wrong!!, that is why defaultdict is used.
 
 print(adj_list)
 
@@ -33,3 +33,5 @@ for u, v in edge_list:
     d[u].append(v)
 
 print(d)
+
+
