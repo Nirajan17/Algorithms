@@ -20,14 +20,13 @@ class Solution:
                 if not dfs(crs):
                     return False
             visit_set.remove(node_val)
-            pre_map[crs] = []
+            pre_map[node_val] = []
             return True
         
         for crs in range(numcourses):
             if not dfs(crs): return False
         return True
-            
 
-
-s = Solution()
-s.courseSchedule(5,[[0,1],[0,2],[1,3],[1,4],[3,4]])
+if __name__=="__main__":
+    s = Solution()
+    print(s.courseSchedule(5,[[0,1],[0,2],[1,3],[1,4],[3,4]]))
