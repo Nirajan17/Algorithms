@@ -11,7 +11,6 @@ class Node(object):
         print(f"It's neighbors are {[neighbor.val for neighbor in self.neighbors]}")
 
 
-
 class Solution(object):
     def cloneGraph(self, node):
         hash_map = {}
@@ -41,11 +40,11 @@ def graphBuilder(adj_list):
     return nodes
 
 if __name__=="__main__":
-    adj_list = [[2,4],[1,3],[2,4],[1,3]]
+    adj_list = [[2,4],[1,3],[2,4],[1,3],[4,5]]
 
     nodes = graphBuilder(adj_list)
 
     s = Solution()
 
-    cloned_node = s.cloneGraph(nodes[1])
+    cloned_node = s.cloneGraph(nodes[4])
     cloned_node.display()
