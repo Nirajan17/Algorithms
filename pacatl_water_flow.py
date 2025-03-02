@@ -46,32 +46,32 @@ if __name__=="__main__":
 
 # let's code on my own
 
-class Solution:
-    def pacificAtlantic(self, heights):
-        rows, cols = len(heights), len(heights[0])
+# class Solution:
+#     def pacificAtlantic(self, heights):
+#         rows, cols = len(heights), len(heights[0])
 
-        pacific = set()
-        atlantic = set()
+#         pacific = set()
+#         atlantic = set()
 
-        def dfs(i, j, visited):
-            visited.add((i,j))
-            for ni, nj in [[i+1,j], [i-1,j], [i,j-1], [i,j+1]]:
-                if 0 <= ni < rows and 0 <= nj < cols and (ni,nj) not in visited and heights[i][j] <= heights[ni][nj]:
-                    dfs(ni, nj, visited)
+#         def dfs(i, j, visited):
+#             visited.add((i,j))
+#             for ni, nj in [[i+1,j], [i-1,j], [i,j-1], [i,j+1]]:
+#                 if 0 <= ni < rows and 0 <= nj < cols and (ni,nj) not in visited and heights[i][j] <= heights[ni][nj]:
+#                     dfs(ni, nj, visited)
 
-        # for pacific
-        for j in range(cols):
-            dfs(0, j, pacific)
+#         # for pacific
+#         for j in range(cols):
+#             dfs(0, j, pacific)
 
-        for i in range(rows):
-            dfs(i, 0, pacific)
+#         for i in range(rows):
+#             dfs(i, 0, pacific)
 
-        # for atlantic
-        for i in range(rows):
-            dfs(i, cols-1, atlantic)
+#         # for atlantic
+#         for i in range(rows):
+#             dfs(i, cols-1, atlantic)
 
-        for j in range(cols):
-            dfs(rows-1, j, atlantic)
+#         for j in range(cols):
+#             dfs(rows-1, j, atlantic)
 
-        return list(atlantic & pacific) # intersection of both sets
+#         return list(atlantic & pacific) # intersection of both sets
 
