@@ -5,14 +5,13 @@
 def longSequence(nums):
     nums_set = set(nums)
     long_count = 0
+
     for n in nums:
-        seq_count = 1
-        if n-1 in nums_set:
-            while n-1 in nums_set:  # here the time to peek in a set is O(1)
-                seq_count += 1
-                n = n-1
-        if seq_count > long_count:
-            long_count = seq_count
+        if n-1 not in nums_set:
+            length = 0
+            while (n+length) in nums_set:  # here the time to peek in a set is O(1)
+                length += 1
+                long_count = max(long_count, length)
 
     return long_count
 
