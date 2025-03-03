@@ -58,7 +58,7 @@ class Solution:
         island_count = 0
         queue = deque()
 
-        def bfs(i, j, island_visited):
+        def bfs(i, j):
             if (i, j) in island_visited or not (0 <= i < rows and 0 <= j < cols) or grid[i][j] != "1":
                 return
 
@@ -70,13 +70,13 @@ class Solution:
 
             while queue:
                 ni, nj = queue.popleft()
-                bfs(ni, nj, island_visited)
+                bfs(ni, nj)
 
 
         for i in range(rows):
             for j in range(cols):
                 if grid[i][j] == "1" and (i,j) not in island_visited:
-                    bfs(i, j, island_visited)
+                    bfs(i, j)
                     island_count += 1
 
         return island_count
