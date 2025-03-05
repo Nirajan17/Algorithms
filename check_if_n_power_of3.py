@@ -2,7 +2,7 @@
 
 # 12 = 3^1 + 3^2
 
-
+# greedy approach
 def powerThree(n):
     i = 0
     value = n
@@ -21,4 +21,16 @@ def powerThree(n):
 
     return value == 0
 
-print(powerThree(91))
+print(powerThree(12))
+
+
+# let's try ternary representation method
+
+# if the number is continuously divided by 3 and the remainder donot contain "2", then it can be ....
+
+def powersOfThree(num):
+    while num > 0:
+        if num%3 == 2:
+            return False
+        num //= 3
+    return True
