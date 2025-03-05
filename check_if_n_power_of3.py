@@ -4,14 +4,17 @@
 
 
 def powerThree(n):
-    value = n - 1
-    i = 1
-    
+    i = 0
+    value = n
     while value > 0:
-        value = n - 3**i
-        if value == powerThree():
-            return True
-        i += 1
-    return False
+
+        while 3**i <= value:
+            i += 1
+        i -= 1
+        sub = 3**i
+        value = value - sub
+        i = 0
+
+    return value == 0
 
 print(powerThree(21))
