@@ -17,22 +17,20 @@ def graphValidTree(n: int, edges: list[list[int]]) -> bool:
 
     # let's check for a valid tree
     visit = set()
-    prev = -1
-    def dfs(node):
-        nonlocal prev
+    def dfs(node, prev):
         if node in visit:
             return False
         visit.add(node)
         for nei in adj_list[node]:
             if nei != prev:
-                prev = node
-                if not dfs(nei):
-                    return True
+                if not dfs(nei, node):
+                    return False
+        return True
 
-    return True if dfs(0) and (n == len(visit)) else False
+    return True if (dfs(0, -1) and (n == len(visit))) else False
 
-edges = [[0, 1], [0, 2], [0, 3], [1, 4]]
-# edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]]
+# edges = [[0, 1], [0, 2], [0, 3], [1, 4]]
+edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]]
 # edges = [[0,1], [0,2], [1,2]]
 
 print(graphValidTree(5, edges))
