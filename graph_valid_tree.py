@@ -29,7 +29,7 @@ def graphValidTree(n: int, edges: list[list[int]]) -> bool:
 
     return True if (dfs(0, -1) and (n == len(visit))) else False
 
-# edges = [[0, 1], [0, 2], [0, 3], [1, 4]]
+# edges = [[0, 1], [0, 2], [0, 3], [1, 4]
 edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]]
 # edges = [[0,1], [0,2], [1,2]]
 
